@@ -29,6 +29,7 @@ p = re.compile('[a-z]+')
 >>> print(m)
 <_sre.SRE_Match object at 0x01F3F9F8>
 </code>
+       
 ### python문자열은 [a-z]+정규식에 부합되므로 match 객체를 돌려줍니다.
        
 ### 따라서 파이썬 정규식 프로그램은 다음과 같이 작성해 매치 여부를 확인합니다.
@@ -50,4 +51,111 @@ else:
 >>> m = p.search("3 python")
 >>> print(m)
 <_sre.SRE_Match object at 0x01F3FA30>
+       </code>
+
+### 3 python문자열은 첫번째 문자가 숫자이므로 match메서드에서는 None을 반환합니다. 하지만 search메서드는 문자열의 처음부터 검색하는 것이 아니라 문자열 전체를 검색하기 때문에 “python”문자열과 매치돼서 match객체를 반환하게 됩니다.
+       
+## findall
+### findall 메서드는 이름 그대로 문자열에서 정규식과 일치하는 부분을 찾아 리스트로 반환시켜줍니다.
+       
+<code>
+>>> result = p.findall("life is too short")
+>>> print(result)
+['life', 'is', 'too', 'short']
+       </code>
+       
+### 정규식과 일치하는 부분인 각 단어들이 반환되는 것을 확인할 수 있습니다.
+       
+## finditer
+### finditer는 findall과 동일하지만 그 결과로 반복 가능한 객체를 돌려줍니다.
+
+<code>
+>>> result = p.finditer("life is too short")
+>>> print(result)
+<callable_iterator object at 0x01F5E390>
+>>> for r in result: print(r)
+...
+<_sre.SRE_Match object at 0x01F3F9F8>
+<_sre.SRE_Match object at 0x01F3FAD8>
+<_sre.SRE_Match object at 0x01F3FAA0>
+<_sre.SRE_Match object at 0x01F3F9F8>
+       </code>
+       
+### 반복 가능한 객체가 포함하는 각각의 요소는 match 객체입니다.
+       
+# 코드 예제
+## 공백 확인 
+
+<code>
+const CHECK_SPACE = /\s+/;
+
+console.log(CHECK_SPACE.test(' '));
+console.log(CHECK_SPACE.test('1 '));
+console.log(CHECK_SPACE.test(' a'));
+console.log(CHECK_SPACE.test(' 1 a '));
+       </code>
+       
+## 숫자 확인
+
+<code>
+const ONLY_NUMBER = /^[0-9]*$/;
+
+console.log(ONLY_NUMBER.test('123456789'));
+       </code>
+       
+## 영문자 확인
+       
+<code>
+const ONLY_ENGLISH = /^[a-zA-Z]*$/;
+
+console.log(ONLY_ENGLISH.test('a'));
+console.log(ONLY_ENGLISH.test('aA'));
+       </code>
+       
+## 이메일 양식 
+       
+<code>
+const EMAIL_CHECK = /\w+@\w+\.\w+(\.\w+)?/;
+
+console.log(EMAIL_CHECK.test('test@google.com'));
+       </code>
+       
+## 전화번호 양식 확인
+
+<code>
+const TEL_NUMBERS_CHECK = /^\d{2,3}-\d{3,4}-\d{4}$/;
+
+console.log(TEL_NUMBERS_CHECK.test('02-123-1234'));
+console.log(TEL_NUMBERS_CHECK.test('031-123-1234'));
+console.log(TEL_NUMBERS_CHECK.test('02-1234-1234'));
+console.log(TEL_NUMBERS_CHECK.test('031-1234-1234'));
+       </code>
+
+## 핸드폰 번호 양식 확인
+       
+<code>
+const PHONE_NUMBERS_CHECK = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
+
+console.log(PHONE_NUMBERS_CHECK.test('010-1234-1234'));
+console.log(PHONE_NUMBERS_CHECK.test('011-123-1234'));
+console.log(PHONE_NUMBERS_CHECK.test('016-123-1234'));
+console.log(PHONE_NUMBERS_CHECK.test('017-123-1234'));
+console.log(PHONE_NUMBERS_CHECK.test('018-123-1234'));
+console.log(PHONE_NUMBERS_CHECK.test('019-123-1234'));
+       </code>
+       
+## 주민등록번호 양식 확인
+       
+<code>
+const IDENTITY_CHECK = /\d{6}\-[1-4]\d{6}/;
+
+console.log(IDENTITY_CHECK.test('220101-4123456'));
+       </code>
+       
+## 우편번호 양식 확인
+       
+<code>
+const POSTAL_CODE_CHECK = /^\d{3}-\d{2}$/;
+
+console.log(POSTAL_CODE_CHECK.test('123-12'));
        </code>
