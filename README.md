@@ -6,4 +6,6 @@
 ### 파이썬은 정규 표현식을 지원하기 위해 re(regular expression)모듈을 제공합니다.
 
 <code> import re
-pattern = re.compile("정규식")<code>
+       pattern = re.compile("정규식")</code>
+### re.compile을 사용하여 정규 표현식을 컴파일합니다. re.compile의 결과인 객체 pattern에 입력한 정규식의 대한 정보가 담겨있습니다.
+### 이제 pattern객체를 이용해 문자열 검색을 수행해보겠습니다. 컴파일된 패턴 객체는 다음과 같은 4가지 메서드를 제공합니다.
