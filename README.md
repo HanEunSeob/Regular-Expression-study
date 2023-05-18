@@ -159,3 +159,7 @@ const POSTAL_CODE_CHECK = /^\d{3}-\d{2}$/;
 
 console.log(POSTAL_CODE_CHECK.test('123-12'));
        </code>
+
+#### 출처
+##### https://sooftware.io/regex/
+##### https://7942yongdae.tistory.com/166
